@@ -9,7 +9,7 @@ const keys = (o: unknown, p = ""): string[] =>
 const values = (o: unknown): string[] =>
   typeof o === "object" && o !== null ? Object.values(o).flatMap(values) : [String(o)];
 
-const BANNED = [/weit fortgeschritten/i, /it is far along/i, /im Alltag/i, /every day/i, /persönlich/i, /personally/i, /löschen?,? sobald|delete them once/i, /fertig ist|actually finished/i];
+const BANNED = [/praktikum/i, /internship/i, /weit fortgeschritten/i, /it is far along/i, /im Alltag/i, /every day/i, /persönlich/i, /personally/i, /löschen?,? sobald|delete them once/i, /fertig ist|actually finished/i];
 
 describe("dictionaries", () => {
   it("contain no claims the owner never made", () => {

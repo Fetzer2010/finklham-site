@@ -14,7 +14,6 @@ export const de = {
     avatarAlt: "Gezeichnetes Porträt von Sebastian Stadlbauer vor leuchtendem Java-Code, Tennisschläger, Tuba, GitHub- und LinkedIn-Logo",
     pathsLabel: "Wohin soll es gehen?",
     paths: [
-      { title: "Praktikum", text: "Ich bewerbe mich später. Hier siehst du, was ich kann.", href: "#projekte" },
       { title: "Auftrag", text: "Du brauchst eine Webseite oder App? Schreib mir.", href: "#kontakt" },
       { title: "Produkte", text: "SnapRDP und TenBook ansehen.", href: "#produkte" },
     ],
@@ -73,7 +72,7 @@ export const de = {
   },
   contact: {
     title: "Schreib mir.",
-    lead: "Für ein Praktikum, einen Auftrag oder eine Frage zu SnapRDP und TenBook.",
+    lead: "Für einen Auftrag oder eine Frage zu SnapRDP und TenBook.",
     mail: "E-Mail",
     github: "GitHub",
   },

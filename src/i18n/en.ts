@@ -15,7 +15,6 @@ export const en: Dictionary = {
     avatarAlt: "Illustrated portrait of Sebastian Stadlbauer in front of glowing Java code, a tennis racket, a tuba, and the GitHub and LinkedIn logos",
     pathsLabel: "Where do you want to go?",
     paths: [
-      { title: "Internship", text: "I will apply later. Here is what I can do.", href: "#projekte" },
       { title: "Commission", text: "Need a website or an app? Write to me.", href: "#kontakt" },
       { title: "Products", text: "See SnapRDP and TenBook.", href: "#produkte" },
     ],
@@ -74,7 +73,7 @@ export const en: Dictionary = {
   },
   contact: {
     title: "Write to me.",
-    lead: "For an internship, a commission, or a question about SnapRDP and TenBook.",
+    lead: "For a commission or a question about SnapRDP and TenBook.",
     mail: "Email",
     github: "GitHub",
   },
