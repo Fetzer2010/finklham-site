@@ -32,7 +32,7 @@ describe("built site", () => {
     expect(h).toContain('href="/en/"');
   });
   it("no third-party hosts are referenced except allowed outbound links", () => {
-    const allowed = /^(www\.finklham\.at|finklham\.at|snaprdp\.finklham\.at|playpages\.finklham\.at|www\.babbo-esport\.at|github\.com|www\.dsb\.gv\.at|dsb\.gv\.at|www\.w3\.org|schema\.org)$/;
+    const allowed = /^(www\.finklham\.at|finklham\.at|snaprdp\.finklham\.at|tenbooklandingpage\.finklham\.at|playpages\.finklham\.at|www\.babbo-esport\.at|github\.com|www\.dsb\.gv\.at|dsb\.gv\.at|www\.w3\.org|schema\.org)$/;
     for (const f of htmlFiles()) {
       const h = readFileSync(f, "utf8");
       for (const m of h.matchAll(/https?:\/\/([a-z0-9.-]+)/gi)) expect(m[1], `${f}: ${m[0]}`).toMatch(allowed);
@@ -67,10 +67,11 @@ describe("built site", () => {
   it("legal pages exist in both languages", () => {
     for (const p of ["de/impressum/index.html", "de/datenschutz/index.html", "en/imprint/index.html", "en/privacy/index.html"]) expect(existsSync(join(dist, p)), p).toBe(true);
   });
-  it("TenBook has no link yet, SnapRDP links to its product page", () => {
+  it("TenBook and SnapRDP link to their product pages", () => {
     const h = read("de/index.html");
     expect(h).toContain("https://snaprdp.finklham.at/");
-    expect(h).toContain("Landing Page folgt");
+    expect(h).toContain("https://tenbooklandingpage.finklham.at/");
+    expect(h).not.toContain("Landing Page folgt");
     expect(h).toContain("in der Testphase");
   });
 });

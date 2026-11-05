@@ -12,7 +12,7 @@ export interface Project {
 }
 const same = (k: string) => ({ de: k, en: k });
 export const projects: Project[] = [
-  { id: "tenbook", status: "ready", stack: ["SvelteKit", "TypeScript", "Drizzle", "Playwright", "Docker"], shape: "phone",
+  { id: "tenbook", status: "ready", stack: ["SvelteKit", "TypeScript", "Drizzle", "Playwright", "Docker"], href: "https://tenbooklandingpage.finklham.at/", shape: "phone",
     images: ["tenbook-tagesansicht", "tenbook-buchen", "tenbook-woche"].map(same) },
   { id: "snaprdp", status: "live", stack: ["Swift", "FreeRDP", "Stripe", "Node.js", "SQLite", "Docker"], href: "https://snaprdp.finklham.at/", shape: "window",
     images: [{ de: "snaprdp-de", en: "snaprdp-en" }] },

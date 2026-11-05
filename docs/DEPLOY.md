@@ -41,6 +41,5 @@ curl -I https://finklham.at/      # → 301 auf https://www.finklham.at/
 ## 4. Später ergänzen
 
 - LinkedIn/Linktree: in `src/data/contact.ts` `href` eintragen und `enabled: true` setzen.
-- TenBook-Link: in `src/data/projects.ts` bei `tenbook` `href` ergänzen.
 - Impressum: `street` (Hausnummer) in `src/data/legal.ts` setzen; solange sie leer ist, warnt der Build. Eine UID brauchst du nur, wenn du eine hast (`uid`).
 - Neue Screenshots: Quellpfade in `scripts/prepare-images.mjs` anpassen und `npm run images` ausführen.
