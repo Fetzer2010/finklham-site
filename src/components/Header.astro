@@ -1,0 +1,29 @@
+---
+import LangSwitch from "./LangSwitch.astro";
+import { t } from "../i18n";
+import { localePath, type Lang } from "../lib/lang";
+interface Props { lang: Lang; altPath: string }
+const { lang, altPath } = Astro.props;
+const d = t(lang);
+const home = localePath(lang, "home");
+---
+<header class="bar">
+  <div class="wrap row">
+    <a class="mark" href={home}>Sebastian Stadlbauer</a>
+    <nav aria-label="Hauptnavigation" class="nav">
+      <a href={`${home}#projekte`}>{d.nav.projects}</a>
+      <a href={`${home}#ueber-mich`}>{d.nav.about}</a>
+      <a href={`${home}#kontakt`}>{d.nav.contact}</a>
+    </nav>
+    <LangSwitch lang={lang} altPath={altPath} />
+  </div>
+</header>
+<style>
+  .bar { position: sticky; top: 0; z-index: 50; background: var(--paper); border-bottom: 1px solid var(--line); }
+  .row { display: flex; align-items: center; gap: var(--space-5); min-height: 3.6rem; }
+  .mark { font: 400 1.35rem/1 var(--font-display); text-decoration: none; letter-spacing: -0.01em; margin-right: auto; }
+  .nav { display: flex; gap: var(--space-5); font-size: 0.95rem; }
+  .nav a { text-decoration: none; padding-block: 0.4rem; background: linear-gradient(var(--signal), var(--signal)) 0 100% / 0 2px no-repeat; transition: background-size 0.3s ease; }
+  .nav a:hover { background-size: 100% 2px; }
+  @media (max-width: 560px) { .nav { display: none; } }
+</style>

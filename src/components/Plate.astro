@@ -1,0 +1,29 @@
+---
+import { Image } from "astro:assets";
+import { img } from "../lib/images";
+import type { Shape } from "../data/projects";
+interface Props { name: string; alt: string; shape?: Shape | "square"; caption?: string; sizes?: string; priority?: boolean }
+const { name, alt, shape = "square", caption, sizes = "(min-width: 900px) 40vw, 92vw", priority = false } = Astro.props;
+const src = img(name);
+---
+<figure class={`plate ${shape}`}>
+  <div class="frame">
+    {shape === "window" && <div class="titlebar" aria-hidden="true"><i></i><i></i><i></i></div>}
+    <Image src={src} alt={alt} widths={[480, 800, 1200]} sizes={sizes} loading={priority ? "eager" : "lazy"} decoding="async" />
+  </div>
+  {caption && <figcaption class="mono">{caption}</figcaption>}
+</figure>
+<style>
+  .plate { margin: 0; }
+  .frame { background: var(--plate); overflow: hidden; position: relative; box-shadow: 0 0 0 1px var(--line), 6px 6px 0 -1px var(--paper), 6px 6px 0 0 var(--line); }
+  .frame :global(img) { width: 100%; height: auto; }
+  .square .frame { border-radius: 2px; }
+  .phone .frame { border-radius: 1.4rem; border: 5px solid var(--plate); background: var(--plate); box-shadow: 0 0 0 1px var(--line); }
+  .phone .frame :global(img) { border-radius: 1rem; }
+  .tablet .frame { border-radius: 1.1rem; border: 7px solid var(--plate); box-shadow: 0 0 0 1px var(--line); }
+  .tablet .frame :global(img) { border-radius: 0.5rem; }
+  .window .frame { border-radius: 8px; border: 1px solid var(--line); }
+  .titlebar { display: flex; gap: 6px; padding: 8px 10px; background: var(--paper-deep); border-bottom: 1px solid var(--line); }
+  .titlebar i { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--ink); }
+  figcaption { margin-top: var(--space-3); color: var(--ink-soft); }
+</style>

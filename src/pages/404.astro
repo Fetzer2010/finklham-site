@@ -1,0 +1,16 @@
+---
+import Base from "../layouts/Base.astro";
+import { t } from "../i18n";
+const d = { de: t("de").notFound, en: t("en").notFound };
+---
+<Base lang="de" page="home" title="404 – Sebastian Stadlbauer" path="/404/" altPath="/en/" noindex>
+  <section class="wrap nf">
+    <h1>{d.de.title}</h1><p>{d.de.text}</p><p><a href="/de/">{d.de.back}</a></p>
+    <h2 lang="en">{d.en.title}</h2><p lang="en">{d.en.text}</p><p lang="en"><a href="/en/">{d.en.back}</a></p>
+  </section>
+</Base>
+<style>
+  .nf { padding-block: var(--space-8); display: grid; gap: var(--space-4); justify-items: start; }
+  h1 { font-size: var(--step-4); } h2 { font-size: var(--step-3); margin-top: var(--space-6); color: var(--ink-soft); }
+  a { font-weight: 600; border-bottom: 2px solid var(--signal); text-decoration: none; }
+</style>

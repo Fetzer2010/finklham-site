@@ -1,0 +1,11 @@
+---
+import DataSheet from "../components/DataSheet.astro";
+import { projects } from "../data/projects";
+import type { Lang } from "../lib/lang";
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const tenbook = projects.find((p) => p.id === "tenbook")!;
+---
+<section class="wrap" id="produkte" aria-label="TenBook">
+  <DataSheet project={tenbook} lang={lang} no={1} total={projects.length} big />
+</section>

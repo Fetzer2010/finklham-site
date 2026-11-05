@@ -1,0 +1,37 @@
+---
+import "../styles/tokens.css";
+import "../styles/base.css";
+---
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sebastian Stadlbauer</title>
+    <meta name="robots" content="noindex,follow" />
+    <link rel="canonical" href="https://www.finklham.at/de/" />
+    <link rel="alternate" hreflang="de" href="https://www.finklham.at/de/" />
+    <link rel="alternate" hreflang="en" href="https://www.finklham.at/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.finklham.at/en/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <main class="wrap choose">
+      <p class="mono">Sebastian Stadlbauer — Portfolio</p>
+      <h1>Sprache <i>/</i> Language</h1>
+      <p class="links"><a href="/de/">Deutsch</a><a href="/en/">English</a></p>
+    </main>
+    <script>
+      import { pickLanguage } from "../lib/lang";
+      import { readStoredLanguage } from "../scripts/langmemory";
+      const lang = pickLanguage(navigator.languages ?? [navigator.language], readStoredLanguage());
+      location.replace(`/${lang}/${location.search}${location.hash}`);
+    </script>
+  </body>
+</html>
+<style>
+  .choose { min-height: 100svh; display: grid; align-content: center; gap: var(--space-5); }
+  h1 { font-size: var(--step-4); }
+  h1 i { color: var(--signal); }
+  .links { display: flex; gap: var(--space-6); font: 400 var(--step-2) var(--font-display); }
+</style>

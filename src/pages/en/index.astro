@@ -1,0 +1,19 @@
+---
+import Base from "../../layouts/Base.astro";
+import Hero from "../../sections/Hero.astro";
+import Highlight from "../../sections/Highlight.astro";
+import Projects from "../../sections/Projects.astro";
+import Pipeline from "../../sections/Pipeline.astro";
+import About from "../../sections/About.astro";
+import Contact from "../../sections/Contact.astro";
+const lang = "en" as const;
+const alt = "/de/";
+---
+<Base lang={lang} page="home" path="/en/" altPath={alt}>
+  <Hero lang={lang} />
+  <Highlight lang={lang} />
+  <Projects lang={lang} />
+  <Pipeline lang={lang} />
+  <About lang={lang} />
+  <Contact lang={lang} />
+</Base>

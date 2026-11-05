@@ -1,0 +1,22 @@
+---
+import { t } from "../i18n";
+import { localePath, type Lang } from "../lib/lang";
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const d = t(lang);
+---
+<footer class="foot">
+  <div class="wrap row">
+    <p class="mono line">{d.footer.line}</p>
+    <nav aria-label="Rechtliches" class="mono links">
+      <a href={localePath(lang, "legal")}>{d.footer.legal}</a>
+      <a href={localePath(lang, "privacy")}>{d.footer.privacy}</a>
+    </nav>
+  </div>
+</footer>
+<style>
+  .foot { border-top: 1px solid var(--line); margin-top: var(--space-8); padding-block: var(--space-5); }
+  .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-3) var(--space-6); }
+  .line { color: var(--ink-soft); max-width: 60ch; }
+  .links { display: flex; gap: var(--space-5); }
+</style>

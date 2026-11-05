@@ -1,0 +1,21 @@
+---
+import SectionHead from "../components/SectionHead.astro";
+import { t } from "../i18n";
+import type { Lang } from "../lib/lang";
+interface Props { lang: Lang }
+const d = t(Astro.props.lang).pipeline;
+---
+<section class="wrap pipe" aria-labelledby="pipe-h">
+  <SectionHead id="pipe-h" title={d.title} lead={d.lead} />
+  <ol class="list">
+    {d.items.map((it) => (<li class="rise"><h3>{it.title}</h3><p>{it.text}</p></li>))}
+  </ol>
+</section>
+<style>
+  .pipe { margin-top: var(--space-8); }
+  .list { display: grid; gap: 0; list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+  li { display: grid; gap: var(--space-2) var(--space-6); padding: var(--space-5) 0; border-bottom: 1px solid var(--line); }
+  @media (min-width: 900px) { li { grid-template-columns: 5fr 6fr; align-items: baseline; } }
+  h3 { font-size: var(--step-2); }
+  p { color: var(--ink-soft); max-width: 48ch; }
+</style>

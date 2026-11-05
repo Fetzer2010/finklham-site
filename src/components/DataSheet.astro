@@ -1,0 +1,74 @@
+---
+import Plate from "./Plate.astro";
+import { t } from "../i18n";
+import type { Lang } from "../lib/lang";
+import type { Project } from "../data/projects";
+interface Props { project: Project; lang: Lang; no: number; total: number; big?: boolean; flip?: boolean }
+const { project: p, lang, no, total, big = false, flip = false } = Astro.props;
+const d = t(lang);
+const txt = d.projects[p.id];
+const statusText = p.status === "ready" ? d.status.ready : p.status === "dev" ? d.status.dev : p.status === "paused" ? d.status.paused : p.status === "client" ? d.status.client : d.status.live;
+const imgs = p.images.map((i) => i[lang]);
+const alt = (n: number) => `${txt.name}, ${d.sheets.screens} ${n + 1}`;
+const H = big ? "h2" : "h3";
+---
+<article class:list={["sheet", { big, flip }]} id={p.id}>
+  <div class="meta mono">
+    <span>{d.sheets.sheet} {no} {d.sheets.of} {total}</span>
+    <span class={`status ${p.status}`}><i aria-hidden="true"></i>{statusText}</span>
+  </div>
+  <div class="body">
+    <div class="text rise">
+      {big && <p class="kicker">{d.highlight.kicker}</p>}
+      <H>{txt.name}</H>
+      <p class="tag">{txt.tagline}</p>
+      <p class="desc">{txt.body}</p>
+      {big && <p class="miles">{d.highlight.milestones}</p>}
+      <dl class="spec mono">
+        {p.stack.length > 0 && (<><dt>{d.sheets.stack}</dt><dd>{p.stack.join(", ")}</dd></>)}
+        {p.with && (<><dt>{d.sheets.with}</dt><dd>{d.withWho[p.with]}</dd></>)}
+      </dl>
+      {p.href
+        ? <a class="go" href={p.href} rel="noopener">{d.sheets.link}: {new URL(p.href).host}<span aria-hidden="true"> →</span></a>
+        : p.id === "tenbook" ? <p class="go none mono">{d.sheets.soon}</p> : null}
+    </div>
+    <div class="shots rise" style="--d:120ms" data-count={imgs.length}>
+      {imgs.length === 0 && <div class="ph mono" aria-hidden="true">{txt.name}</div>}
+      {imgs.map((n, i) => <Plate name={n} alt={alt(i)} shape={p.shape} sizes={big ? "(min-width: 900px) 18vw, 30vw" : "(min-width: 900px) 40vw, 92vw"} />)}
+    </div>
+  </div>
+</article>
+<style>
+  .sheet { position: relative; padding: var(--space-5) 0 var(--space-7); border-top: 1px solid var(--line-faint); }
+  .big { padding: var(--space-6) var(--gutter) var(--space-7); margin-inline: calc(-1 * var(--gutter)); border: 1px solid var(--line); background-color: var(--paper); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 28px 28px; }
+  .meta { display: flex; justify-content: space-between; gap: var(--space-4); color: var(--ink-soft); margin-bottom: var(--space-6); }
+  .status { display: inline-flex; align-items: center; gap: 0.5em; color: var(--ink); }
+  .status i { width: 0.6em; height: 0.6em; border-radius: 50%; background: var(--ink-soft); }
+  .status.live i, .status.client i { background: var(--signal); }
+  .status.ready i { background: var(--ink); }
+  .status.dev i { background: transparent; border: 1.5px solid var(--signal); }
+  .status.paused i { background: transparent; border: 1.5px solid var(--ink-soft); }
+  .body { display: grid; gap: var(--space-6); align-items: start; }
+  @media (min-width: 900px) {
+    .body { grid-template-columns: 5fr 6fr; gap: clamp(2rem, 5vw, 6rem); }
+    .flip .body { grid-template-columns: 6fr 5fr; }
+    .flip .text { order: 2; }
+  }
+  .kicker { font: italic 400 var(--step-1)/1.2 var(--font-display); color: var(--signal-ink); margin-bottom: var(--space-3); }
+  h2, h3 { font-size: var(--step-3); }
+  .big h2 { font-size: var(--step-4); }
+  .tag { font: 400 var(--step-1)/1.25 var(--font-display); color: var(--ink-soft); margin-top: var(--space-3); }
+  .desc { margin-top: var(--space-5); max-width: 52ch; }
+  .miles { margin-top: var(--space-4); max-width: 52ch; color: var(--ink-soft); font-size: 0.95rem; }
+  .spec { display: grid; grid-template-columns: max-content 1fr; gap: var(--space-2) var(--space-5); margin: var(--space-5) 0 0; padding-top: var(--space-4); border-top: 1px solid var(--line); }
+  .spec dt { color: var(--ink-soft); }
+  .spec dd { margin: 0; }
+  .go { display: inline-block; margin-top: var(--space-5); font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--signal); padding-bottom: 2px; }
+  .go:hover { background: var(--signal); color: var(--ink); }
+  .go.none { border: 0; font-weight: 400; color: var(--ink-soft); }
+  .shots { display: grid; gap: var(--space-4); align-items: start; }
+  .shots[data-count="3"] { grid-template-columns: repeat(3, 1fr); gap: clamp(0.5rem, 2vw, 1.5rem); }
+  .shots[data-count="3"] :global(.plate:nth-child(2)) { margin-top: var(--space-6); }
+  .shots[data-count="1"] { max-width: 640px; }
+  .ph { aspect-ratio: 16 / 10; display: grid; place-items: center; border: 1px dashed var(--line); color: var(--ink-soft); background: repeating-linear-gradient(135deg, transparent 0 10px, var(--line-faint) 10px 11px); }
+</style>

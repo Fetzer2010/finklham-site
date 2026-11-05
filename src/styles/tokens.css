@@ -1,0 +1,37 @@
+@import "@fontsource/instrument-serif/400.css";
+@import "@fontsource/instrument-serif/400-italic.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+@import "@fontsource/hanken-grotesk/400.css";
+@import "@fontsource/hanken-grotesk/500.css";
+@import "@fontsource/hanken-grotesk/600.css";
+
+:root {
+  --paper: #ece9e2;
+  --paper-deep: #e2ded4;
+  --ink: #0f1630;
+  --ink-soft: #454c66;
+  --line: rgba(15, 22, 48, 0.88);
+  --line-faint: rgba(15, 22, 48, 0.16);
+  --grid: rgba(34, 70, 170, 0.1);
+  --signal: #ff4d1c;
+  --signal-ink: #b52f08; /* AA on paper for small text */
+  --plate: #0b1330;
+
+  --font-display: "Instrument Serif", "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --font-body: "Hanken Grotesk", system-ui, sans-serif;
+
+  --step--1: clamp(0.78rem, 0.76rem + 0.1vw, 0.85rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --step-1: clamp(1.25rem, 1.15rem + 0.5vw, 1.55rem);
+  --step-2: clamp(1.7rem, 1.4rem + 1.4vw, 2.6rem);
+  --step-3: clamp(2.4rem, 1.7rem + 3.4vw, 4.6rem);
+  --step-4: clamp(3.1rem, 1.6rem + 7.4vw, 8.6rem);
+
+  --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+  --space-5: 1.5rem; --space-6: 2.5rem; --space-7: 4rem; --space-8: clamp(4rem, 3rem + 6vw, 9rem);
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+  --measure: 62ch;
+  --maxw: 1320px;
+}

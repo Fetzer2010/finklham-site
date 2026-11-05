@@ -1,0 +1,21 @@
+<!doctype html><meta charset="utf-8">
+<style>
+  @font-face{font-family:"IS";src:url("../node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2")}
+  @font-face{font-family:"JB";src:url("../node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff2")}
+  *{box-sizing:border-box;margin:0}
+  body{width:1200px;height:630px;background:#ece9e2;color:#0f1630;position:relative;overflow:hidden;
+    background-image:linear-gradient(rgba(34,70,170,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(34,70,170,.1) 1px,transparent 1px);background-size:30px 30px}
+  .frame{position:absolute;inset:36px;border:2px solid #0f1630}
+  h1{position:absolute;left:84px;top:120px;font:400 132px/0.9 "IS",serif;letter-spacing:-5px}
+  p{position:absolute;left:88px;bottom:96px;font:400 28px/1.35 "JB",monospace;max-width:560px}
+  .dot{position:absolute;left:88px;top:84px;font:400 22px "JB",monospace;color:#454c66}
+  img{position:absolute;right:84px;top:84px;width:462px;height:462px;border:2px solid #0f1630;box-shadow:10px 10px 0 #ff4d1c}
+</style>
+<div class="frame"></div>
+<div class="dot" id="role"></div><h1>Sebastian<br>Stadlbauer</h1><p id="sub"></p>
+<img src="../src/assets/img/avatar.webp">
+<script>
+ const de=location.search.includes("de");
+ document.getElementById("role").textContent=de?"Schüler an der HTL Grieskirchen":"Student at HTL Grieskirchen";
+ document.getElementById("sub").textContent=de?"Apps und Webseiten, von der Idee bis zum Bezahlvorgang.":"Apps and websites, from idea to checkout.";
+</script>

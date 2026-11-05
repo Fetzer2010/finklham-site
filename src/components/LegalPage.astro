@@ -1,0 +1,48 @@
+---
+import Base from "../layouts/Base.astro";
+import { t } from "../i18n";
+import { localePath, altLang, type Lang } from "../lib/lang";
+import { legal, missingLegalFields } from "../data/legal";
+interface Props { lang: Lang; kind: "legal" | "privacy" }
+const { lang, kind } = Astro.props;
+const d = t(lang).legal;
+const missing = missingLegalFields();
+if (kind === "legal" && missing.length) console.warn(`\n[legal] Impressum: offene Pflichtangaben: ${missing.join(", ")}\n`);
+const path = localePath(lang, kind);
+const alt = localePath(altLang(lang), kind);
+const title = kind === "legal" ? d.legalTitle : d.privacyTitle;
+---
+<Base lang={lang} page={kind} title={`${title} – Sebastian Stadlbauer`} path={path} altPath={alt} noindex>
+  <article class="wrap doc">
+    <h1>{title}</h1>
+    {kind === "legal" ? (
+      <>
+        <p class="lead">{d.legalLead}</p>
+        <dl>
+          <dt>{d.provider}</dt>
+          <dd>{legal.name}<br />{legal.street ?? legal.locality}<br />{legal.zip} {legal.city}<br />{legal.country}</dd>
+          <dt>{d.contact}</dt>
+          <dd>{d.email}: <a href={`mailto:${legal.email}`}>{legal.email}</a><br />{d.phone}: <a href={`tel:${legal.phone.replace(/\s/g, "")}`}>{legal.phone}</a></dd>
+          {legal.uid && (<><dt>UID</dt><dd>{legal.uid}</dd></>)}
+        </dl>
+      </>
+    ) : (
+      <>
+        <p class="lead">{d.privacyLead}</p>
+        {d.sections.map((s) => (<section><h2>{s.h}</h2><p>{s.p}</p></section>))}
+      </>
+    )}
+    <p class="mono asof">{d.asOf}</p>
+    <p><a href={localePath(lang, "home")}>{d.back}</a></p>
+  </article>
+</Base>
+<style>
+  .doc { padding-block: var(--space-7) 0; max-width: 46rem; margin-inline: auto; display: grid; gap: var(--space-5); }
+  h1 { font-size: var(--step-4); }
+  .lead { font-size: var(--step-1); line-height: 1.4; color: var(--ink-soft); }
+  h2 { font-size: var(--step-2); margin-bottom: var(--space-2); }
+  section { padding-top: var(--space-4); border-top: 1px solid var(--line); }
+  dl { display: grid; grid-template-columns: 8rem 1fr; gap: var(--space-4) var(--space-5); border-top: 1px solid var(--line); padding-top: var(--space-5); }
+  dt { color: var(--ink-soft); } dd { margin: 0; }
+  .asof { color: var(--ink-soft); }
+</style>
