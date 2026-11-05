@@ -55,7 +55,10 @@ const jsonLd = page === "home" && {
     <link rel="alternate" hreflang={lang} href={`${site}${path}`} />
     <link rel="alternate" hreflang={altLang(lang)} href={`${site}${altPath}`} />
     <link rel="alternate" hreflang="x-default" href={`${site}${lang === "en" ? path : altPath}`} />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/favicon-192.png" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={desc} />
