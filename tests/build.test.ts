@@ -32,7 +32,7 @@ describe("built site", () => {
     expect(h).toContain('href="/en/"');
   });
   it("no third-party hosts are referenced except allowed outbound links", () => {
-    const allowed = /^(www\.finklham\.at|finklham\.at|snaprdp\.finklham\.at|playpages\.finklham\.at|www\.babbo-esport\.at|github\.com|www\.dsb\.gv\.at|dsb\.gv\.at|www\.w3\.org)$/;
+    const allowed = /^(www\.finklham\.at|finklham\.at|snaprdp\.finklham\.at|playpages\.finklham\.at|www\.babbo-esport\.at|github\.com|www\.dsb\.gv\.at|dsb\.gv\.at|www\.w3\.org|schema\.org)$/;
     for (const f of htmlFiles()) {
       const h = readFileSync(f, "utf8");
       for (const m of h.matchAll(/https?:\/\/([a-z0-9.-]+)/gi)) expect(m[1], `${f}: ${m[0]}`).toMatch(allowed);
@@ -43,6 +43,22 @@ describe("built site", () => {
   });
   it("every img has a non-empty alt", () => {
     for (const f of htmlFiles()) for (const m of readFileSync(f, "utf8").matchAll(/<img\b[^>]*>/g)) expect(m[0], f).toMatch(/alt="[^"]+"/);
+  });
+  it("home pages carry Person structured data", () => {
+    for (const p of ["de/index.html", "en/index.html"]) {
+      const m = read(p).match(/<script type="application\/ld\+json">(.*?)<\/script>/s);
+      expect(m, p).not.toBeNull();
+      const person = JSON.parse(m![1])["@graph"].find((n: { "@type": string }) => n["@type"] === "Person");
+      expect(person.name).toBe("Sebastian Stadlbauer");
+      expect(person.sameAs).toContain("https://github.com/Fetzer2010");
+    }
+  });
+  it("sitemap lists only indexable pages", () => {
+    const s = read("sitemap-0.xml");
+    expect(s).not.toContain("<loc>https://www.finklham.at/</loc>");
+    expect(s).not.toContain('href="https://www.finklham.at/"');
+    expect(s).toContain("<loc>https://www.finklham.at/de/</loc>");
+    expect(s).toContain("<loc>https://www.finklham.at/en/</loc>");
   });
   it("sitemap, robots, CNAME, og images exist", () => {
     for (const p of ["sitemap-index.xml", "robots.txt", "CNAME", "og-de.png", "og-en.png", "404.html"]) expect(existsSync(join(dist, p)), p).toBe(true);

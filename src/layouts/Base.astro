@@ -6,6 +6,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { t } from "../i18n";
 import { altLang, type Lang, type PageKey } from "../lib/lang";
+import { contacts } from "../data/contact";
 
 interface Props { lang: Lang; page: PageKey; title?: string; description?: string; path: string; altPath: string; noindex?: boolean }
 const { lang, page, title, description, path, altPath, noindex } = Astro.props;
@@ -14,6 +15,32 @@ const site = "https://www.finklham.at";
 const fullTitle = title ?? d.meta.title;
 const desc = description ?? d.meta.description;
 const og = `${site}/og-${lang}.png`;
+const jsonLd = page === "home" && {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${site}/#person`,
+      name: "Sebastian Stadlbauer",
+      url: `${site}/${lang}/`,
+      image: og,
+      email: "mailto:sebastian@finklham.at",
+      jobTitle: d.hero.role,
+      description: desc,
+      affiliation: { "@type": "EducationalOrganization", name: "HTL Grieskirchen" },
+      address: { "@type": "PostalAddress", addressRegion: lang === "de" ? "Oberösterreich" : "Upper Austria", addressCountry: "AT" },
+      sameAs: contacts.filter((c) => c.enabled && c.href.startsWith("https://")).map((c) => c.href),
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${site}/#website`,
+      url: `${site}/`,
+      name: "Sebastian Stadlbauer",
+      inLanguage: lang,
+      author: { "@id": `${site}/#person` },
+    },
+  ],
+};
 ---
 <!doctype html>
 <html lang={lang}>
@@ -37,6 +64,8 @@ const og = `${site}/og-${lang}.png`;
     <meta property="og:image:alt" content={d.meta.ogAlt} />
     <meta property="og:locale" content={lang === "de" ? "de_AT" : "en_US"} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="author" content="Sebastian Stadlbauer" />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body>
     <a class="skip" href="#main">{d.nav.skip}</a>
