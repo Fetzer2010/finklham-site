@@ -1,7 +1,7 @@
 export const de = {
   meta: {
-    title: "Sebastian Stadlbauer – Apps und Webseiten, komplett gebaut",
-    description: "Sebastian Stadlbauer, Schüler an der HTL Grieskirchen. Ich baue Apps und Webseiten von der Idee bis zum Bezahlvorgang: TenBook, SnapRDP, PlayPages, Trabo.",
+    title: "Sebastian Stadlbauer – Apps und Webseiten aus einer Hand",
+    description: "Sebastian Stadlbauer, Schüler an der HTL Grieskirchen. Apps und Webseiten von der Idee bis zum fertigen Produkt: TenBook, SnapRDP, PlayPages, Trabo.",
     ogAlt: "Sebastian Stadlbauer, Portfolio",
   },
   nav: { projects: "Projekte", about: "Über mich", contact: "Kontakt", skip: "Zum Inhalt springen", home: "Zur Startseite" },
@@ -9,7 +9,7 @@ export const de = {
   footer: { legal: "Impressum", privacy: "Datenschutz", line: "Gebaut von Sebastian Stadlbauer in Oberösterreich. Ohne Cookies, ohne Tracking." },
   hero: {
     role: "Schüler an der HTL Grieskirchen",
-    lead: "Ich baue Apps und Webseiten von der ersten Idee bis zum Bezahlvorgang, für Menschen, die sie wirklich benutzen.",
+    lead: "Apps und Webseiten, von der ersten Idee bis zum fertigen Produkt. Für Menschen, die sie wirklich nutzen.",
     figCaption: "Sebastian Stadlbauer, gezeichnet",
     avatarAlt: "Gezeichnetes Porträt von Sebastian Stadlbauer vor leuchtendem Java-Code, Tennisschläger, Tuba, GitHub- und LinkedIn-Logo",
     pathsLabel: "Wohin soll es gehen?",
@@ -19,10 +19,10 @@ export const de = {
     ],
   },
   sheets: { sheet: "Blatt", of: "von", stack: "Technik", status: "Stand", with: "Mit", link: "Ansehen", soon: "Landing Page folgt", noLink: "Kein öffentlicher Link", screens: "Bildschirmfotos" },
-  status: { ready: "fertig entwickelt, Verkauf folgt", live: "live", dev: "in Entwicklung", paused: "pausiert", client: "Kundenprojekt, live" },
+  status: { ready: "in der Testphase", live: "live", dev: "in Entwicklung", paused: "pausiert", client: "Kundenprojekt, live" },
   withWho: { tubist: "Profi-Tubist", riders: "zwei Hobby-Reitern", classmate: "Klassenkollege", client: "Kunde" },
   projectsHead: { title: "Was ich gebaut habe", lead: "Jedes Projekt ist ein Datenblatt: Was es ist, womit es gebaut ist und wie weit es ist." },
-  highlight: { kicker: "Mein stolzestes Projekt", milestones: "Sechs Meilensteine abgenommen: Einrichtung, Benutzerverwaltung, Buchungssystem, Admin-Funktionen, Superadmin-Konfiguration, Betrieb." },
+  highlight: { kicker: "Mein größtes Projekt", milestones: "Sechs Meilensteine abgenommen: Einrichtung, Benutzerverwaltung, Buchungssystem, Admin-Funktionen, Superadmin-Konfiguration, Betrieb." },
   projects: {
     tenbook: {
       name: "TenBook",
@@ -66,7 +66,7 @@ export const de = {
   },
   about: {
     title: "Über mich",
-    p1: "Ich besuche die HTL Grieskirchen und baue neben der Schule Software von der Idee bis zum Betrieb: mit Landing Page, Bezahlung und eigenem Server.",
+    p1: "Ich besuche die HTL Grieskirchen und entwickle neben der Schule Software, von der Idee bis zum Betrieb: mit Landing Page, Bezahlung und eigenem Server.",
     p2: "Privat spiele ich Tuba. Deshalb entsteht PlayPages gemeinsam mit einem Profi-Tubisten. Trabo testen zwei Hobby-Reiter, damit echte Trainingsdaten und ehrliches Feedback zusammenkommen.",
     p3: "SchoolNotesPlus habe ich mit einem Klassenkollegen gebaut. Für Babbo habe ich eine Webseite im Kundenauftrag umgesetzt.",
   },

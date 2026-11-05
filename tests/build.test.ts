@@ -71,6 +71,6 @@ describe("built site", () => {
     const h = read("de/index.html");
     expect(h).toContain("https://snaprdp.finklham.at/");
     expect(h).toContain("Landing Page folgt");
-    expect(h).toContain("fertig entwickelt");
+    expect(h).toContain("in der Testphase");
   });
 });

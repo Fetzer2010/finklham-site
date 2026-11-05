@@ -20,7 +20,7 @@ export const en: Dictionary = {
     ],
   },
   sheets: { sheet: "Sheet", of: "of", stack: "Stack", status: "Status", with: "With", link: "Visit", soon: "Landing page coming", noLink: "No public link", screens: "Screenshots" },
-  status: { ready: "built, sales to follow", live: "live", dev: "in development", paused: "paused", client: "client project, live" },
+  status: { ready: "in testing", live: "live", dev: "in development", paused: "paused", client: "client project, live" },
   withWho: { tubist: "a professional tuba player", riders: "two hobby riders", classmate: "a classmate", client: "client" },
   projectsHead: { title: "What I have built", lead: "Each project is a datasheet: what it is, what it is built with, and how far along it is." },
   highlight: { kicker: "The project I am proudest of", milestones: "Six milestones signed off: setup, user management, booking system, admin functions, superadmin configuration, operations." },
